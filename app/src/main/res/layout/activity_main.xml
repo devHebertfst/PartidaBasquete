@@ -148,6 +148,9 @@
             android:padding="12dp"
             android:text="Empate"
             android:textSize="18sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="26dp"
             android:fontFamily="sans-serif"/>
 
     </LinearLayout>
