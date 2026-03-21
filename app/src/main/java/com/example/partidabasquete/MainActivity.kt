@@ -22,6 +22,7 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var pTimeA: TextView
     private lateinit var pTimeB: TextView
+    private lateinit var pDiferenca: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +31,7 @@ class MainActivity : ComponentActivity() {
 
         pTimeA = findViewById(R.id.placarTimeA)
         pTimeB = findViewById(R.id.placarTimeB)
+        pDiferenca = findViewById(R.id.diferencaPlacar)
 
         val bTresPontosTimeA: Button = findViewById(R.id.tresPontosA)
         val bDoisPontosTimeA: Button = findViewById(R.id.doisPontosA)
@@ -74,6 +76,13 @@ class MainActivity : ComponentActivity() {
         }else {
             pTimeB.setText(pontuacaoTimeB.toString())
         }
+
+        val diferenca = pontuacaoTimeA - pontuacaoTimeB
+        when {
+            diferenca > 0 -> pDiferenca.setText("Time A está vencendo por $diferenca pts")
+            diferenca < 0 -> pDiferenca.setText("Time B está vencendo por ${-diferenca} pts")
+            else -> pDiferenca.setText("Empate")
+        }
     }
 
 
@@ -82,6 +91,7 @@ class MainActivity : ComponentActivity() {
         pTimeA.setText(pontuacaoTimeA.toString())
         pontuacaoTimeB = 0
         pTimeB.setText(pontuacaoTimeB.toString())
+        pDiferenca.setText("Empate")
         Toast.makeText(this,"Placar reiniciado",Toast.LENGTH_SHORT).show()
 
     }
