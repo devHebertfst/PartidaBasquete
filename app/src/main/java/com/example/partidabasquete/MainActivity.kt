@@ -76,6 +76,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+
     fun reiniciarPartida() {
         pontuacaoTimeA = 0
         pTimeA.setText(pontuacaoTimeA.toString())
