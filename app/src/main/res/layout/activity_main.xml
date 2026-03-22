@@ -32,6 +32,7 @@
                 android:text="Time A"
                 android:textSize="14sp"
                 android:textColor="#FF0000"
+                android:background="#CC000000"
                 android:fontFamily="sans-serif"/>
 
             <TextView
@@ -96,6 +97,7 @@
                 android:padding="16dp"
                 android:text="Time B"
                 android:textColor="#0000FF"
+                android:background="#CC000000"
                 android:textSize="14sp"
                 android:fontFamily="sans-serif"/>
 
@@ -152,6 +154,35 @@
             android:textStyle="bold"
             android:layout_marginTop="26dp"
             android:fontFamily="sans-serif"/>
+
+        <TextView
+            android:id="@+id/quartoAtual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="1º Quarto"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"/>
+
+        <TextView
+            android:id="@+id/historicoQuartos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif"/>
+
+        <Button
+            android:id="@+id/encerrarQuarto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Encerrar Quarto"/>
 
     </LinearLayout>
 

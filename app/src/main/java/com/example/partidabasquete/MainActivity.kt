@@ -24,10 +24,21 @@ class MainActivity : ComponentActivity() {
     private lateinit var pTimeB: TextView
     private lateinit var pDiferenca: TextView
 
+    private var quarto: Int = 1
+
+    private lateinit var tQuarto: TextView
+
+    private lateinit var tHistorico: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        tQuarto = findViewById(R.id.quartoAtual)
+        tHistorico = findViewById(R.id.historicoQuartos)
+        val bEncerrarQuarto: Button = findViewById(R.id.encerrarQuarto)
+        bEncerrarQuarto.setOnClickListener { encerrarQuarto() }
 
         pTimeA = findViewById(R.id.placarTimeA)
         pTimeB = findViewById(R.id.placarTimeB)
@@ -94,5 +105,52 @@ class MainActivity : ComponentActivity() {
         pDiferenca.setText("Empate")
         Toast.makeText(this,"Placar reiniciado",Toast.LENGTH_SHORT).show()
 
+        quarto = 1
+        tQuarto.setText("1º Quarto")
+        tHistorico.setText("")
+        val bTresPontosTimeA: Button = findViewById(R.id.tresPontosA)
+        val bDoisPontosTimeA: Button = findViewById(R.id.doisPontosA)
+        val bTLivreTimeA: Button = findViewById(R.id.tiroLivreA)
+        val bTresPontosTimeB: Button = findViewById(R.id.tresPontosB)
+        val bDoisPontosTimeB: Button = findViewById(R.id.doisPontosB)
+        val bTLivreTimeB: Button = findViewById(R.id.tiroLivreB)
+        val bEncerrarQuarto: Button = findViewById(R.id.encerrarQuarto)
+        bTresPontosTimeA.isEnabled = true
+        bDoisPontosTimeA.isEnabled = true
+        bTLivreTimeA.isEnabled = true
+        bTresPontosTimeB.isEnabled = true
+        bDoisPontosTimeB.isEnabled = true
+        bTLivreTimeB.isEnabled = true
+        bEncerrarQuarto.isEnabled = true
+
+    }
+
+    fun encerrarQuarto() {
+        val resultado = "$quarto º Quarto: Time A $pontuacaoTimeA x $pontuacaoTimeB Time B"
+        tHistorico.setText(tHistorico.text.toString() + resultado + "\n")
+
+        when {
+            quarto < 4 -> {
+                quarto++
+                tQuarto.setText("$quarto º Quarto")
+            }
+            else -> {
+                tQuarto.setText("Partida Encerrada!")
+                val bTresPontosTimeA: Button = findViewById(R.id.tresPontosA)
+                val bDoisPontosTimeA: Button = findViewById(R.id.doisPontosA)
+                val bTLivreTimeA: Button = findViewById(R.id.tiroLivreA)
+                val bTresPontosTimeB: Button = findViewById(R.id.tresPontosB)
+                val bDoisPontosTimeB: Button = findViewById(R.id.doisPontosB)
+                val bTLivreTimeB: Button = findViewById(R.id.tiroLivreB)
+                val bEncerrarQuarto: Button = findViewById(R.id.encerrarQuarto)
+                bTresPontosTimeA.isEnabled = false
+                bDoisPontosTimeA.isEnabled = false
+                bTLivreTimeA.isEnabled = false
+                bTresPontosTimeB.isEnabled = false
+                bDoisPontosTimeB.isEnabled = false
+                bTLivreTimeB.isEnabled = false
+                bEncerrarQuarto.isEnabled = false
+            }
+        }
     }
 }
