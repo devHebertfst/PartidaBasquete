@@ -20,6 +20,9 @@ class MainActivity : ComponentActivity() {
     private var pontuacaoTimeA: Int = 0
     private var pontuacaoTimeB: Int = 0
 
+    private var ultimosPontos: Int = 0
+    private var ultimoTime: String = ""
+
     private lateinit var pTimeA: TextView
     private lateinit var pTimeB: TextView
     private lateinit var pDiferenca: TextView
@@ -34,6 +37,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val bDesfazer: Button = findViewById(R.id.desfazerPonto)
+        bDesfazer.setOnClickListener { desfazerUltimoPonto() }
 
         tQuarto = findViewById(R.id.quartoAtual)
         tHistorico = findViewById(R.id.historicoQuartos)
@@ -71,6 +77,8 @@ class MainActivity : ComponentActivity() {
     }
 
     fun adicionarPontos(pontos: Int, time: String) {
+        ultimosPontos = pontos
+        ultimoTime = time
         if(time == "A"){
             pontuacaoTimeA += pontos
 
@@ -115,6 +123,7 @@ class MainActivity : ComponentActivity() {
         val bDoisPontosTimeB: Button = findViewById(R.id.doisPontosB)
         val bTLivreTimeB: Button = findViewById(R.id.tiroLivreB)
         val bEncerrarQuarto: Button = findViewById(R.id.encerrarQuarto)
+        val bDesfazer: Button = findViewById(R.id.desfazerPonto)
         bTresPontosTimeA.isEnabled = true
         bDoisPontosTimeA.isEnabled = true
         bTLivreTimeA.isEnabled = true
@@ -122,7 +131,31 @@ class MainActivity : ComponentActivity() {
         bDoisPontosTimeB.isEnabled = true
         bTLivreTimeB.isEnabled = true
         bEncerrarQuarto.isEnabled = true
+        bDesfazer.isEnabled = true
 
+        ultimosPontos = 0
+        ultimoTime = ""
+
+    }
+
+    fun desfazerUltimoPonto() {
+        if (ultimosPontos == 0) {
+            Toast.makeText(this, "Nada para desfazer", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (ultimoTime == "A") {
+            pontuacaoTimeA -= ultimosPontos
+            atualizaPlacar("A")
+        } else {
+            pontuacaoTimeB -= ultimosPontos
+            atualizaPlacar("B")
+        }
+
+        Toast.makeText(this, "Último ponto desfeito", Toast.LENGTH_SHORT).show()
+
+        ultimosPontos = 0
+        ultimoTime = ""
     }
 
     fun encerrarQuarto() {
@@ -143,6 +176,7 @@ class MainActivity : ComponentActivity() {
                 val bDoisPontosTimeB: Button = findViewById(R.id.doisPontosB)
                 val bTLivreTimeB: Button = findViewById(R.id.tiroLivreB)
                 val bEncerrarQuarto: Button = findViewById(R.id.encerrarQuarto)
+                val bDesfazer: Button = findViewById(R.id.desfazerPonto)
                 bTresPontosTimeA.isEnabled = false
                 bDoisPontosTimeA.isEnabled = false
                 bTLivreTimeA.isEnabled = false
@@ -150,6 +184,7 @@ class MainActivity : ComponentActivity() {
                 bDoisPontosTimeB.isEnabled = false
                 bTLivreTimeB.isEnabled = false
                 bEncerrarQuarto.isEnabled = false
+                bDesfazer.isEnabled = false
             }
         }
     }

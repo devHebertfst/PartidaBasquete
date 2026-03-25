@@ -177,6 +177,14 @@
             android:fontFamily="sans-serif"/>
 
         <Button
+            android:id="@+id/desfazerPonto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Desfazer Último Ponto"
+            android:backgroundTint="#FF8800"/>
+
+        <Button
             android:id="@+id/encerrarQuarto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
